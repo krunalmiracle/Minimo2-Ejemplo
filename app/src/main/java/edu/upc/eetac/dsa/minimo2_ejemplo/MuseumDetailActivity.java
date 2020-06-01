@@ -33,6 +33,7 @@ public class MuseumDetailActivity extends AppCompatActivity {
         group_adreca_municipi_nom, email, telefon_contacte, municipi_escut (imagen),
         municipi_bancera, imagen[0] (imagen), nombre_habitants, extensio y altitud
         */
+        //One Giant TextBox for the Whole Json String Description easy way hehe!
         String description = "";
         description = "Nom " + element.getAdrecaNom();
         description = description + ", Descripcio "+ element.getDescripcio()+ ", adreca ";
@@ -43,6 +44,7 @@ public class MuseumDetailActivity extends AppCompatActivity {
         Log.w("Descr","Description "+ description);
         Log.w("Descr","Bandera "+ element.getRelMunicipis().getMunicipiBandera());
         Log.w("Descr","escut "+ element.getRelMunicipis().getMunicipiEscut());
+        //Just in case, if the bandera or Escut is there and not empty
         if(element.getRelMunicipis().getMunicipiBandera() != null){
             if(!element.getRelMunicipis().getMunicipiBandera().isEmpty())
                 Picasso.get().load(element.getRelMunicipis().getMunicipiBandera()).into(bandera);

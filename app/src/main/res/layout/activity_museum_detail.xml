@@ -46,14 +46,16 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            app:srcCompat="@drawable/noImage" />
+            android:layout_gravity="center"
+            app:srcCompat="@drawable/noimage" />
 
         <ImageView
             android:id="@+id/escutImg"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            app:srcCompat="@drawable/noImage" />
+            android:layout_gravity="center"
+            app:srcCompat="@drawable/noimage" />
     </LinearLayout>
 
 </LinearLayout>
