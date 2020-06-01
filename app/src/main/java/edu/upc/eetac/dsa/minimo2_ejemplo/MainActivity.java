@@ -10,6 +10,7 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
 import android.widget.ProgressBar;
 import android.widget.Toast;
 
@@ -67,9 +68,11 @@ public class MainActivity extends AppCompatActivity {
                 startRetrofit();
                 museumService = retrofit.create(MuseumService.class);
                 //Progress Visible
+                spinner.setVisibility(View.VISIBLE);
                 //Get Data
                 getData();
                 //Progess Invisible
+                spinner.setVisibility(View.INVISIBLE);
             }catch(Exception e){
                 //Not possible to connect to server
                 e.printStackTrace();
@@ -122,6 +125,9 @@ public class MainActivity extends AppCompatActivity {
     private void LaunchMuseumDetailPopup(int position){
         //Start a new activity with the detailed data of the Museum
         Log.d("Museum Detail Activity","Detail of the Museum PopUp");
+        Intent intent = new Intent(MainActivity.this , MuseumDetailActivity.class);
+        intent.putExtra("Element",museums.getElements().get(position));
+        startActivityForResult(intent,2);
     }
     private void NotifyUser(String showMessage){
         Toast toast = Toast.makeText(MainActivity.this,showMessage,Toast.LENGTH_SHORT);
