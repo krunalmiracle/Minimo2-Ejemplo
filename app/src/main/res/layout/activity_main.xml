@@ -5,20 +5,12 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".MainActivity">
-    <ProgressBar
-        android:id="@+id/progressBar_cyclic"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:minHeight="100dp"
-        android:minWidth="100dp"
-        android:visibility="invisible"
-        android:layout_centerVertical="true"
-        android:layout_centerHorizontal="true" />
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical">
+
         <TableRow
             android:layout_width="match_parent"
             android:layout_height="match_parent">
@@ -31,7 +23,13 @@
                 android:longClickable="true"
                 android:scrollbars="vertical" />
         </TableRow>
-
     </LinearLayout>
-
+    <ProgressBar
+        android:id="@+id/progressBar_cyclic"
+        style="?android:attr/progressBarStyleLarge"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_centerHorizontal="true"
+        android:layout_centerInParent="true"/>
 </RelativeLayout>

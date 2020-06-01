@@ -6,11 +6,13 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.app.Activity;
+import android.app.Dialog;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.Toast;
 
@@ -67,12 +69,11 @@ public class MainActivity extends AppCompatActivity {
             try{
                 startRetrofit();
                 museumService = retrofit.create(MuseumService.class);
-                //Progress Visible
-                spinner.setVisibility(View.VISIBLE);
+
                 //Get Data
                 getData();
-                //Progess Invisible
-                spinner.setVisibility(View.INVISIBLE);
+
+
             }catch(Exception e){
                 //Not possible to connect to server
                 e.printStackTrace();
@@ -81,8 +82,17 @@ public class MainActivity extends AppCompatActivity {
         }
 
     }
+    private Dialog progressDialog(){
+        final Dialog dialog=new Dialog(this);
+        dialog.setContentView(R.layout.dialog_progress);
+        dialog.setCanceledOnTouchOutside(false);
+        dialog.setCancelable(false);
+        dialog.show();
+        return dialog;
+    }
     private void getData(){
-
+        //Set Progress Bar dialog
+        spinner.setVisibility(View.VISIBLE);
         try {
             Call<Museums> playersStats = museumService.getMuseums();
             /* Android Doesn't allow synchronous execution of Http Request and so we must put it in queue*/
@@ -93,6 +103,7 @@ public class MainActivity extends AppCompatActivity {
                         // non empty response, Mapping Json via Gson...
                         Log.d("MainActivity","Server Response Ok Museums");
                         museums = response.body();
+                        spinner.setVisibility(View.GONE);
                         //If clicked once then new player list else update the recyclerview
                         if(mAdapter == null){
                             MyMuseumsRecyclerViewAdapter(museums.getElements());
